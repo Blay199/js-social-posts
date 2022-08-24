@@ -1,3 +1,28 @@
+// RECUPERO CONTAINER 
+
+// CREO ARRAY VUOTO PER LIKES
+
+// CICLO FOREACH POSTS
+// CREO VAR BTN-LIKEHELL = TEMPLATE LIT DEL PULSANTE
+// AGGIUNGI GUARDONE AL BOTTONE 
+// INCREMENTARE NUM LIKES 
+// idpost = this.dataset.postid
+// const postElement = queryselector('#post-' + idpost + ' .js-likes-counter')
+// postElement.innerhtml++
+
+// CAMBIARE COLORE DEL TESTO BOTTONE
+// this.classList.add('active')
+// this.innerHtml = 'you like this'
+
+// CREO VAR IMAGE = ELEMENT.AUTHOR.IMAGE
+// SE !IMAGE 
+// INSERISCO IMMAGINE PROV 
+
+// CONTAINER INNERHTML TEMPLATE LIT DEL POST
+
+
+
+
 const posts = [
     {
         "id": 1,
@@ -56,7 +81,44 @@ const posts = [
     }
 ];
 
+const container = document.getElementById('container');
+let likedPosts = [];
 
+posts.forEach((element) => {
+    let image = element.author.image;
+    let buttonlikesEL = `<a class="like-button  js-like-button" href="#" data-postid="${element.id}">
+<i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+<span class="like-button__label">Mi Piace</span>
+</a>`;
 
+    if (image === null) {
+        image = 'https://unsplash.it/300/300?image='
+    }
 
-kjgbskjgbsoingfsòlngsòlgnsòognspo
+    container.innerHTML += `<div class="post" id="post-${element.id}">
+    <div class="post__header">
+        <div class="post-meta">                    
+            <div class="post-meta__icon">
+                <img class="profile-pic" src="${image}" alt="Phil Mangione">                    
+            </div>
+            <div class="post-meta__data">
+                <div class="post-meta__author">${element.author.name}</div>
+                <div class="post-meta__time">${element.created}</div>
+            </div>                    
+        </div>
+    </div>
+    <div class="post__text">${element.content}</div>
+    <div class="post__image">
+        <img src="${element.media}" alt="">
+    </div>
+    <div class="post__footer">
+        <div class="likes js-likes">
+            <div class="likes__cta">
+                ${buttonlikesEL}
+            </div>
+            <div class="likes__counter">
+                Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+            </div>
+        </div> 
+    </div>`;
+});
